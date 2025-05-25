@@ -1,12 +1,19 @@
+body{
+margin: 0;
+font-family: 'Montserrat', Arial, sans-serif;
+background: #f5f7fa;
+font-size: 16px; /* Establish a consistent base for em units, matching common browser defaults */
+color: #204080;
+}
+
 /* ====== NAVIGATION BAR ====== */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #204080;
-  padding: 0 40px;
-  height: 80px;
-  font-family: 'Montserrat', Arial, sans-serif;
+  background: #285197;
+  padding: 0 48px;
+  height: 70px;
 }
 
 .navbar-left {
@@ -18,15 +25,15 @@
   height: 1.6em;
   width: 1.6em;
   margin-right: 14px;
-  border-radius: 50%;
+ border-radius: 0; /* Live site style (square logo) */
   object-fit: cover;
   vertical-align: middle;
 }
 
 .navbar-title {
   color: #fff;
-  font-size: 1.7em;
-  font-weight: bold;
+  font-size: 1.6em;   /* Live site size */
+  font-weight: 700; /* Live site weight */
   line-height: 1.1;
 }
 
@@ -51,11 +58,11 @@
 .navbar-menu li a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.1em;
-  padding: 10px 22px;
-  border-radius: 8px;
+  font-size: 1em;
+  padding: 8px 18px;
+  border-radius: 6px;
   transition: background 0.2s, color 0.2s;
-  font-weight: 500;
+  font-weight: 600;
   background: transparent;
 }
 
@@ -63,6 +70,73 @@
 .navbar-menu li a:hover {
   background: #3b5998;
   color: #fff;
+}
+
+/* ====== DROPDOWN MENU STYLES ====== */
+
+/* Container for the menu item that will have a dropdown */
+.navbar-menu li.has-dropdown {
+  position: relative; /* Establishes a positioning context for the submenu */
+}
+
+/* Add a visual indicator (e.g., a down arrow) to links that have a dropdown */
+.navbar-menu li.has-dropdown > a::after {
+  content: ''; /* Necessary for the pseudo-element to be generated */
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.5em; /* Space between text and arrow */
+  vertical-align: middle; /* Align arrow with the text */
+  border-left: 4px solid transparent; /* Create triangle shape */
+  border-right: 4px solid transparent; /* Create triangle shape */
+  border-top: 5px solid currentColor; /* Color of the arrow (inherits link color) */
+  opacity: 0.7; /* Make it slightly less prominent than text */
+}
+
+/* The dropdown submenu itself */
+.dropdown-submenu {
+  display: none; /* Hidden by default */
+  position: absolute; /* Positioned relative to the nearest positioned ancestor (li.has-dropdown) */
+  top: 100%; /* Position it directly below the parent list item */
+  left: 0; /* Align with the left edge of the parent list item */
+  background-color: #3b5998; /* Background color - consistent with nav link hover */
+  list-style: none; /* Remove default bullet points */
+  padding: 8px 0; /* Padding for the dropdown container */
+  margin: 0; /* Reset default margin */
+  min-width: 220px; /* Minimum width of the dropdown, adjust as needed */
+  z-index: 1000; /* Ensure it appears above other content */
+  border-radius: 0 0 6px 6px; /* Optional: rounded bottom corners, matching nav link radius */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* A subtle shadow for depth */
+  border-top: 1px solid #285197; /* Optional: a separator line, using main nav color */
+}
+
+/* Show the dropdown submenu when hovering over the parent list item */
+.navbar-menu li.has-dropdown:hover .dropdown-submenu {
+  display: block;
+}
+
+/* Styling for individual items within the dropdown submenu */
+.dropdown-submenu li {
+  margin-left: 0; /* Override any margin from .navbar-menu li */
+  width: 100%; /* Make list items take full width of the dropdown */
+}
+
+.dropdown-submenu li a {
+  display: block; /* Make the link fill the entire list item for easier clicking */
+  padding: 10px 20px; /* Adjust padding for dropdown links */
+  color: #fff; /* Text color for dropdown links */
+  text-decoration: none; /* Ensure no underline from parent styles */
+  background-color: transparent; /* Ensure no background from parent :hover state initially */
+  border-radius: 0; /* Dropdown items usually don't have individual border-radius */
+  font-weight: 500; /* Slightly less bold than main nav items, or adjust as preferred */
+  white-space: nowrap; /* Prevent text from wrapping */
+  transition: background-color 0.2s, color 0.2s; /* Smooth transition for hover */
+}
+
+/* Hover state for dropdown submenu links */
+.dropdown-submenu li a:hover {
+  background-color: #285197; /* Main navbar color for hover background */
+  color: #FFD600; /* Accent color for text on hover, like .navbar-title .learn */
 }
 
 /* ====== SECTION 1: HERO ====== */
@@ -108,8 +182,8 @@
 
 /* ====== SECTION 2: FEATURES ====== */
 .section-white {
-  background: #f5f7fa;
-  color: #204080;
+  background: #b3c6e0; /* Live site background */
+  color: #204080;     /* Default text color for this section */
   padding: 56px 0 48px 0;
   text-align: center;
 }
@@ -121,8 +195,8 @@
   flex-wrap: wrap;
 }
 .feature-box {
-  background: #285197;
-  color: #fff;
+ background: #ffffff; /* Live site card background */
+  /* color: #fff; removed, text color will be inherited or set by children */
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(40,81,151,0.13);
   padding: 32px 28px;
@@ -136,7 +210,7 @@
 .feature-box:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 8px 24px rgba(40,81,151,0.18);
-  background: #2a60b1;
+  background: #2a60b1; /* Live site hover background */
 }
 .feature-title {
   font-size: 1.3em;
@@ -146,7 +220,7 @@
 }
 .feature-desc {
   font-size: 1em;
-  color: #fff;
+  color: #000000; /* Live site description text color */
   line-height: 1.5;
 }
 
@@ -168,32 +242,28 @@
   min-width: 220px;
   text-align: left;
   flex: 1 1 0;
-  background: none !important;   /* No background */
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  padding: 0;
+  background: #285197; /* Live site card background */
+  border-radius: 14px;  /* Live site card radius */
+  box-shadow: 0 4px 18px rgba(40,81,151,0.18); /* Live site card shadow */
+  padding: 24px 18px; /* Live site card padding */
   margin: 0 0 24px 0;
-  color: #fff;
+  color: #fff; /* Default text color for elements inside, like p.footer-desc */
 }
-.footer-col:hover,  
-.footer-col:focus,
-.footer-col:active {
-  background: none !important;   /* No background on hover */
-  box-shadow: none !important;
-}
+/* Removed .footer-col:hover as live site doesn't change these properties on hover */
+
+
 .footer-header {
   display: inline-block;
 }
 
 .footer-header h3 {
-  color: #FFD600;
+  color: #ffffff; /* Live site heading color */
   font-size: 1.1em;
   font-weight: 700;
   margin-bottom: 12px;
   position: relative;
-  display: inline-block;
+   display: inline-block; /* Important for positioning the underline span if it's a child */
 }
-
 .footer-col ul {
   list-style: none;
   padding: 0;
@@ -203,7 +273,7 @@
   margin-bottom: 10px;
 }
 .footer-col ul li a {
-  color: #204080;
+  color: #ffffff; /* Live site link color */
   text-decoration: none;
   font-size: 1em;
   transition: color 0.2s;
@@ -214,11 +284,13 @@
   text-underline-offset: 3px;
 }
 .footer-contact {
-  color: #204080;
+  color: #ffffff; /* Live site contact text color */
   font-size: 1em;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+
+  
 }
 .footer-bottom {
   text-align: center;
@@ -227,10 +299,15 @@
   margin-top: 0;
   padding-bottom: 18px;
 }
+.footer-bottom hr { /* Style for the hr in footer bottom */
+    border: none;
+    border-top: 1px solid #3b4e7a;
+    margin: 24px 0 12px 0;
+}
 .footer-underline {
   display: block;
-  height: 4px;
-  width: 100%;
+ height: 3px;        /* Live site style */
+  width: 36px;        /* Live site style */
   background: #FFD600;
   border-radius: 2px;
   margin-top: 4px;
@@ -247,13 +324,29 @@
   .navbar {
     flex-direction: column;
     height: auto;
-    padding: 0 16px;
+    padding: 12px 16px; /* Adjusted padding for stacked navbar */
   }
   .navbar-menu {
     margin-top: 12px;
+    flex-direction: column; /* Stack menu items */
+    width: 100%;
+    align-items: center;
+  }
+  .navbar-menu li {
+    margin-left: 0;
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-menu li:last-child {
+    margin-bottom: 0;
+  }
+  .navbar-menu li a {
+    display: block; /* Make links full width for easier tapping */
   }
   .footer-col {
     min-width: 0;
-    width: 100%;
+    width: 90%; /* Give some space on sides */
+    max-width: 400px; /* Prevent them from becoming too wide */
   }
 }
