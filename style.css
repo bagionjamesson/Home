@@ -168,7 +168,6 @@ color: #204080;
 .hamburger-menu.active .hamburger-bar:nth-child(2) { opacity: 0; }
 .hamburger-menu.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-
 /* ====== SECTION 1: HERO ====== */
 .section-blue {
   background: #285197;
